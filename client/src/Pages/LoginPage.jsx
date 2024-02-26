@@ -40,7 +40,7 @@ function LoginPage() {
     <div className='lg:h-5/6 '>
       <div className='w-full bg-[#f0f2f5]'>
         <div className='pt-4 pb-8 md:grid md:grid-cols-2 md:py-24 md:pb-28 md:overflow-x-hidden lg:grid lg:grid-cols-2 lg:max-w-6xl lg:mx-auto lg:py-26'>
-          <div className='grid grid-cols-1 justify-items-center items-center md:relative  lg:relative'>
+          <header className='grid grid-cols-1 justify-items-center items-center md:relative  lg:relative'>
             <div className='md:absolute md:left-5 md:top-20 md:pt-1 lg:absolute lg:left-16 lg:top-18 lg:pl-1'>
               <img
                 className='h-24 w-max-full scale-105'
@@ -53,9 +53,9 @@ function LoginPage() {
                 Connect with friends and the world around you on Facebook.
               </h1>
             </div>
-          </div>
+          </header>
 
-          <div className='grid grid-cols-1 justify-items-center mb-24 md:scale-x-105'>
+          <main className='grid grid-cols-1 justify-items-center mb-24 md:scale-x-105'>
             <form
               className='border-2 w-96 p-4 pb-6 mt-4 bg-white shadow-xl md:mt-8 rounded-lg '
               onSubmit={Submit}
@@ -142,12 +142,12 @@ function LoginPage() {
                 &nbsp;for a celebrity, brand or business.
               </p>
             </div>
-          </div>
+          </main>
         </div>
       </div>
 
-      <div className='bg-white pb-6'>
-        <div className='w-9/12 mx-auto  max-w-[968px]'>
+      <footer className='bg-white pb-6'>
+        <nav className='w-9/12 mx-auto  max-w-[968px]'>
           <ul className='flex flex-row flex-wrap text-gray-400 text-xs pt-6 text-center'>
             <li>
               <a className='text-[#737373] hover:cursor-default '>
@@ -366,8 +366,8 @@ function LoginPage() {
           <div className='text-[#737373] text-xs mt-4 text-left'>
             Meta &copy; 2024
           </div>
-        </div>
-      </div>
+        </nav>
+      </footer>
     </div>
   );
 }
