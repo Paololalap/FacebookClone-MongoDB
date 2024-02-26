@@ -147,221 +147,85 @@ function LoginPage() {
       </div>
 
       <footer className='bg-white pb-6'>
-        <nav className='w-9/12 mx-auto  max-w-[968px]'>
+        <nav className='w-9/12 mx-auto max-w-[980px]'>
+          {/* Language options */}
           <ul className='flex flex-row flex-wrap text-gray-400 text-xs pt-6 text-center'>
-            <li>
-              <a className='text-[#737373] hover:cursor-default '>
-                English&nbsp;(US)
-              </a>
-            </li>
-            <li className='ml-2 mb-2 text-[#8a8d91]'>
-              <a href='#' className='hover:underline'>
-                Filipino
-              </a>
-            </li>
-            <li className='ml-2 mb-2 text-[#8a8d91]'>
-              <a href='#' className='hover:underline'>
-                Bisaya
-              </a>
-            </li>
-            <li className='ml-2 mb-2 text-[#8a8d91]'>
-              <a href='#' className='hover:underline'>
-                Español
-              </a>
-            </li>
-            <li className='ml-2 mb-2 text-[#8a8d91]'>
-              <a href='#' className='hover:underline'>
-                日本語
-              </a>
-            </li>
-            <li className='ml-2 mb-2 text-[#8a8d91]'>
-              <a href='#' className='hover:underline'>
-                한국어
-              </a>
-            </li>
-            <li className='ml-2 mb-2 text-[#8a8d91]'>
-              <a href='#' className='hover:underline'>
-                中文&nbsp;(简体)
-              </a>
-            </li>
-            <li className='ml-2 mb-2 text-[#8a8d91]'>
-              <a href='#' className='hover:underline'>
-                العربية
-              </a>
-            </li>
-            <li className='ml-2 mb-2 text-[#8a8d91]'>
-              <a href='#' className='hover:underline'>
-                Português&nbsp;(Brasil)
-              </a>
-            </li>
-            <li className='ml-2 mb-2 text-[#8a8d91]'>
-              <a href='#' className='hover:underline'>
-                Français&nbsp;(France)
-              </a>
-            </li>
-            <li className='ml-2 mb-2 text-[#8a8d91]'>
-              <a href='#' className='hover:underline'>
-                Deutsch
-              </a>
-            </li>
+            {[
+              "English (US)",
+              "Filipino",
+              "Bisaya",
+              "Español",
+              "日本語",
+              "한국어",
+              "中文 (简体)",
+              "العربية",
+              "Português (Brasil)",
+              "Français (France)",
+              "Deutsch",
+            ].map((lang, index) => (
+              <li
+                key={index}
+                className={`${index !== 0 && "ml-2"} mb-2 text-[#8a8d91]`}
+              >
+                {index === 0 ? (
+                  <span className='text-[#737373] hover:cursor-text'>
+                    {lang}
+                  </span>
+                ) : (
+                  <a href='#' className='hover:underline'>
+                    {lang}
+                  </a>
+                )}
+              </li>
+            ))}
+
+            {/* Plus icon */}
             <li className='ml-2 mb-2 cursor-pointer bg-slate-100 shadow hover:shadow-inner  focus:bg-slate-700'>
               <div className='border h-5 w-8 flex justify-center items-center pb-1 '>
                 <a className='text-lg font-bold text-slate-700'>+</a>
               </div>
             </li>
           </ul>
-          <div className='border-t mt-0'></div>
-          <ul className='flex flex-row flex-wrap text-gray-400 text-xs mt-2 leading-5'>
-            <li className='pr-6'>
-              <a className='text-[#8a8d91]' href='#'>
-                Sign&nbsp;Up
-              </a>
-            </li>
-            <li className='pr-6 text-[#8a8d91]'>
-              <a href='#' className='hover:underline'>
-                Log&nbsp;In
-              </a>
-            </li>
-            <li className='pr-6 text-[#8a8d91]'>
-              <a href='#' className='hover:underline'>
-                Messenger
-              </a>
-            </li>
-            <li className='pr-6 text-[#8a8d91]'>
-              <a href='#' className='hover:underline'>
-                Facebook&nbsp;Lite
-              </a>
-            </li>
-            <li className='pr-6 text-[#8a8d91]'>
-              <a href='#' className='hover:underline'>
-                Video
-              </a>
-            </li>
-            <li className='pr-6 text-[#8a8d91]'>
-              <a href='#' className='hover:underline'>
-                Places
-              </a>
-            </li>
-            <li className='pr-6 text-[#8a8d91]'>
-              <a href='#' className='hover:underline'>
-                Games
-              </a>
-            </li>
-            <li className='pr-6 text-[#8a8d91]'>
-              <a href='#' className='hover:underline'>
-                Marketplace
-              </a>
-            </li>
-            <li className='pr-6 text-[#8a8d91]'>
-              <a href='#' className='hover:underline'>
-                Meta&nbsp;Pay
-              </a>
-            </li>
-            <li className='pr-6 text-[#8a8d91]'>
-              <a href='#' className='hover:underline'>
-                Meta&nbsp;Store
-              </a>
-            </li>
-            <li className='pr-6 text-[#8a8d91]'>
-              <a href='#' className='hover:underline'>
-                Meta&nbsp;Quest
-              </a>
-            </li>
-            <li className='pr-6 text-[#8a8d91]'>
-              <a href='#' className='hover:underline'>
-                Imagine&nbsp;with&nbsp;Meta&nbsp;AI
-              </a>
-            </li>
-            <li className='pr-6 text-[#8a8d91]'>
-              <a href='#' className='hover:underline'>
-                Instagram
-              </a>
-            </li>
-            <li className='pr-6 text-[#8a8d91]'>
-              <a href='#' className='hover:underline'>
-                Threads
-              </a>
-            </li>
-            <li className='pr-6 text-[#8a8d91]'>
-              <a href='#' className='hover:underline'>
-                Fundraisers
-              </a>
-            </li>
-            <li className='pr-6 text-[#8a8d91]'>
-              <a href='#' className='hover:underline'>
-                Services
-              </a>
-            </li>
-            <li className='pr-6 text-[#8a8d91]'>
-              <a href='#' className='hover:underline'>
-                Voting&nbsp;Information&nbsp;Center
-              </a>
-            </li>
-            <li className='pr-6 text-[#8a8d91]'>
-              <a href='#' className='hover:underline'>
-                Privacy&nbsp;Policy
-              </a>
-            </li>
-            <li className='pr-6 text-[#8a8d91]'>
-              <a href='#' className='hover:underline'>
-                Privacy&nbsp;Center
-              </a>
-            </li>
-            <li className='pr-6 text-[#8a8d91]'>
-              <a href='#' className='hover:underline'>
-                Groups
-              </a>
-            </li>
-            <li className='pr-6 text-[#8a8d91]'>
-              <a href='#' className='hover:underline'>
-                About
-              </a>
-            </li>
-            <li className='pr-6 text-[#8a8d91]'>
-              <a href='#' className='hover:underline'>
-                Create&nbsp;Ad
-              </a>
-            </li>
-            <li className='pr-6 text-[#8a8d91]'>
-              <a href='#' className='hover:underline'>
-                Create&nbsp;Page
-              </a>
-            </li>
-            <li className='pr-6 text-[#8a8d91]'>
-              <a href='#' className='hover:underline'>
-                Developers
-              </a>
-            </li>
-            <li className='pr-6 text-[#8a8d91]'>
-              <a href='#' className='hover:underline'>
-                Careers
-              </a>
-            </li>
-            <li className='pr-6 text-[#8a8d91]'>
-              <a href='#' className='hover:underline'>
-                Cookies
-              </a>
-            </li>
-            <li className='pr-6 text-[#8a8d91]'>
-              <a href='#' className='hover:underline'>
-                Ad&nbsp;Choices
-              </a>
-            </li>
-            <li className='pr-6 text-[#8a8d91]'>
-              <a href='#' className='hover:underline'>
-                Terms
-              </a>
-            </li>
-            <li className='pr-6 text-[#8a8d91]'>
-              <a href='#' className='hover:underline'>
-                Help
-              </a>
-            </li>
-            <li className='pr-6 text-[#8a8d91]'>
-              <a href='#' className='hover:underline'>
-                Contact&nbsp;Uploading&nbsp;&&nbsp;Non-Users
-              </a>
-            </li>
+          {/* Footer links */}
+          <ul className='flex flex-row flex-wrap text-gray-400 text-xs leading-5 border-t pt-2'>
+            {[
+              "Sign Up",
+              "Log In",
+              "Messenger",
+              "Facebook Lite",
+              "Video",
+              "Places",
+              "Games",
+              "Marketplace",
+              "Meta Pay",
+              "Meta Store",
+              "Meta Quest",
+              "Imagine with Meta AI",
+              "Instagram",
+              "Threads",
+              "Fundraisers",
+              "Services",
+              "Voting Information Center",
+              "Privacy Policy",
+              "Privacy Center",
+              "Groups",
+              "About",
+              "Create Ad",
+              "Create Page",
+              "Developers",
+              "Careers",
+              "Cookies",
+              "Ad Choices",
+              "Terms",
+              "Help",
+              "Contact Uploading & Non-Users",
+            ].map((link, index) => (
+              <li key={index} className='pr-5 text-[#8a8d91]'>
+                <a href='#' className='hover:underline'>
+                  {link}
+                </a>
+              </li>
+            ))}
           </ul>
           <div className='text-[#737373] text-xs mt-4 text-left'>
             Meta &copy; 2024
