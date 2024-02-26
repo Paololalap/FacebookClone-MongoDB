@@ -4,24 +4,19 @@ import axios from "axios";
 import eyeIcon from "../assets/show.png";
 import hideIcon from "../assets/hide.png";
 
-function LoginPage() {
+export default function LoginPage() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [showPassword, setShowPassword] = useState(false);
-
   const inputRef = useRef(null);
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
+  const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
   // Function to handle form submission
   const Submit = (e) => {
     e.preventDefault();
 
-    if (!email || !password) {
-      return;
-    }
+    if (!email || !password) return;
 
     // Sending a POST request to create a new user
     axios
@@ -31,9 +26,7 @@ function LoginPage() {
   };
 
   // Effect hook to focus on the email input field when the component mounts
-  useEffect(() => {
-    inputRef.current.focus();
-  }, []);
+  useEffect(() => inputRef.current.focus(), []);
 
   // Rendered JSX for the login page
   return (
@@ -69,7 +62,6 @@ function LoginPage() {
               <input
                 type='text'
                 id='email'
-                name='email'
                 className='p-3 border-2 rounded-md w-full focus:ring-blue-500 focus:ring-1 focus:outline-0'
                 placeholder='Email or phone number'
                 ref={inputRef}
@@ -87,7 +79,6 @@ function LoginPage() {
                 <input
                   type={showPassword ? "text" : "password"}
                   id='password'
-                  name='password'
                   className='mt-1 p-3 border-2 rounded-md w-full focus:ring-blue-500 focus:ring-1 focus:outline-0 placeholder:text-md'
                   placeholder='Password'
                   value={password}
@@ -172,9 +163,7 @@ function LoginPage() {
                     {lang}
                   </span>
                 ) : (
-                  <a href='#' className='hover:underline'>
-                    {lang}
-                  </a>
+                  <a className='hover:underline hover:cursor-pointer'>{lang}</a>
                 )}
               </li>
             ))}
@@ -221,9 +210,7 @@ function LoginPage() {
               "Contact Uploading & Non-Users",
             ].map((link, index) => (
               <li key={index} className='pr-5 text-[#8a8d91]'>
-                <a href='#' className='hover:underline'>
-                  {link}
-                </a>
+                <a className='hover:underline'>{link}</a>
               </li>
             ))}
           </ul>
@@ -235,5 +222,3 @@ function LoginPage() {
     </div>
   );
 }
-
-export default LoginPage;
