@@ -1,4 +1,4 @@
-//server/models/Users.js
+//Users.js
 
 const mongoose = require("mongoose");
 
