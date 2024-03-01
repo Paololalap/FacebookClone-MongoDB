@@ -12,6 +12,7 @@ export default function LoginPage() {
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
+      e.preventDefault();
       // Trigger click event on Link component
       loginRef.current.click();
     }
@@ -53,7 +54,7 @@ export default function LoginPage() {
               <input
                 type='text'
                 id='email'
-                className='p-3 border-2 rounded-md w-full focus:ring-blue-500 focus:ring-1 focus:outline-0'
+                className='p-3 border-2 rounded-md w-full focus:ring-blue-500 focus:ring-1 focus:outline-0 text-[1.05rem]'
                 placeholder='Email or phone number'
                 ref={emailRef}
                 autoComplete='on'
@@ -70,7 +71,7 @@ export default function LoginPage() {
                 <input
                   type={showPassword ? "text" : "password"}
                   id='password'
-                  className='mt-1 p-3 border-2 rounded-md w-full focus:ring-blue-500 focus:ring-1 focus:outline-0 placeholder:text-md'
+                  className='mt-1 p-3 border-2 rounded-md w-full text-[1.05rem] focus:ring-blue-500 focus:ring-1 focus:outline-0 placeholder:text-md '
                   placeholder='Password'
                   onChange={(e) => setPassword(e.target.value)}
                   onKeyDown={handleKeyPress}
