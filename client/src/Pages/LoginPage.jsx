@@ -1,32 +1,26 @@
 //LoginPage.jsx
 import React, { useEffect, useRef, useState } from "react";
-import axios from "axios";
 import eyeIcon from "../assets/show.png";
 import hideIcon from "../assets/hide.png";
+import { Link } from "react-router-dom";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [showPassword, setShowPassword] = useState(false);
-  const inputRef = useRef(null);
+  const emailRef = useRef(null);
+  const loginRef = useRef(null);
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      // Trigger click event on Link component
+      loginRef.current.click();
+    }
+  };
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
-  // Function to handle form submission
-  const Submit = (e) => {
-    e.preventDefault();
-
-    if (!email || !password) return;
-
-    // Sending a POST request to create a new user
-    axios
-      .post("http://localhost:3001/createUser", { email, password })
-      .then((result) => console.log(result))
-      .catch((err) => console.log(err));
-  };
-
   // Effect hook to focus on the email input field when the component mounts
-  useEffect(() => inputRef.current.focus(), []);
+  useEffect(() => emailRef.current.focus(), []);
 
   // Rendered JSX for the login page
   return (
@@ -49,10 +43,7 @@ export default function LoginPage() {
           </header>
 
           <main className='grid grid-cols-1 justify-items-center mb-24 md:scale-x-105'>
-            <form
-              className='border-2 w-96 p-4 pb-6 mt-4 bg-white shadow-xl md:mt-8 rounded-lg '
-              onSubmit={Submit}
-            >
+            <form className='border-2 w-96 p-4 pb-6 mt-4 bg-white shadow-xl md:mt-8 rounded-lg '>
               <label
                 htmlFor='username'
                 className='block text-sm font-medium text-gray-600'
@@ -64,9 +55,9 @@ export default function LoginPage() {
                 id='email'
                 className='p-3 border-2 rounded-md w-full focus:ring-blue-500 focus:ring-1 focus:outline-0'
                 placeholder='Email or phone number'
-                ref={inputRef}
+                ref={emailRef}
                 autoComplete='on'
-                onChange={(e) => setEmail(e.target.value)}
+                onKeyDown={handleKeyPress}
               />
 
               <label
@@ -81,8 +72,8 @@ export default function LoginPage() {
                   id='password'
                   className='mt-1 p-3 border-2 rounded-md w-full focus:ring-blue-500 focus:ring-1 focus:outline-0 placeholder:text-md'
                   placeholder='Password'
-                  value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  onKeyDown={handleKeyPress}
                 />
 
                 {/* Toggle password visibility button */}
@@ -101,35 +92,38 @@ export default function LoginPage() {
               </div>
 
               {/* Submit button for the login form */}
-              <button
-                type='submit'
-                className='mt-4 p-2 py-3 pt-2 bg-[#0866ff] text-white rounded-md w-full text-xl font-sans font-bold transition-all focus:ring-blue-300 focus:ring focus:outline-0 focus:transition-all focus:duration-500 hover:bg-[#1877f2] active:ring-0 active:transition-none'
+              <Link
+                to='/loginfailed'
+                ref={loginRef}
+                className='inline-block mt-4 p-2 py-3 pt-2 bg-[#0866ff] text-white rounded-md w-full text-xl font-sans font-bold transition-all focus:ring-blue-300 focus:ring focus:outline-0 focus:transition-all focus:duration-500 hover:bg-[#1877f2] active:ring-0 active:transition-none'
               >
                 Log In
-              </button>
-              <div className='text-center mt-3 text-sm text-blue-600'>
-                <a className='hover:underline' href='#'>
-                  Forgot password?
-                </a>
-              </div>
+              </Link>
+
+              <Link
+                to='/maintenance'
+                className='block text-center mt-3 text-sm text-blue-600 hover:underline'
+              >
+                Forgot password?
+              </Link>
               <div className='border-t mt-5'></div>
-              <div className='flex'>
-                <button
-                  type='submit'
-                  className='mt-6 tracking-wider py-3 bg-[#42b72a] text-white rounded-md px-4 text-md font-bold mx-auto border-0 hover:transition-colors hover:bg-[#36a420] active:bg-[#2b9217] focus:ring-blue-300 focus:ring focus:outline-0 focus:transition-all focus:duration-500'
-                >
-                  Create new account
-                </button>
-              </div>
+
+              <Link
+                to='/maintenance'
+                className='inline-block mt-6 tracking-wider py-3 bg-[#42b72a] text-white rounded-md px-4 text-md font-bold mx-auto border-0 hover:transition-colors hover:bg-[#36a420] active:bg-[#2b9217] focus:ring-blue-300 focus:ring focus:outline-0 focus:transition-all focus:duration-500'
+                type='submit'
+              >
+                Create new account
+              </Link>
             </form>
             <div className='mt-6 mx-auto'>
               <p className='text-sm text-center'>
-                <a
-                  href='#'
+                <Link
+                  to='/maintenance'
                   className='tracking-wider font-semibold hover:underline'
                 >
                   <strong>Create a Page</strong>
-                </a>
+                </Link>
                 &nbsp;for a celebrity, brand or business.
               </p>
             </div>
@@ -163,7 +157,9 @@ export default function LoginPage() {
                     {lang}
                   </span>
                 ) : (
-                  <a className='hover:underline hover:cursor-pointer'>{lang}</a>
+                  <a href='#' className='hover:underline hover:cursor-pointer'>
+                    {lang}
+                  </a>
                 )}
               </li>
             ))}
@@ -210,7 +206,9 @@ export default function LoginPage() {
               "Contact Uploading & Non-Users",
             ].map((link, index) => (
               <li key={index} className='pr-5 text-[#8a8d91]'>
-                <a className='hover:underline'>{link}</a>
+                <a href='#' className='hover:underline'>
+                  {link}
+                </a>
               </li>
             ))}
           </ul>
