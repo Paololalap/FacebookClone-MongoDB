@@ -45,52 +45,46 @@ export default function LoginPage() {
 
           <main className='grid grid-cols-1 justify-items-center mb-24 md:scale-x-105'>
             <form className='border-2 w-96 p-4 pb-6 mt-4 bg-white shadow-xl md:mt-8 rounded-lg '>
-              <label
-                htmlFor='username'
-                className='block text-sm font-medium text-gray-600'
-              ></label>
-
               {/* Input field for email */}
-              <input
-                type='text'
-                id='email'
-                className='p-3 border-2 rounded-md w-full focus:ring-blue-500 focus:ring-1 focus:outline-0 text-[1.05rem]'
-                placeholder='Email or phone number'
-                ref={emailRef}
-                autoComplete='on'
-                onKeyDown={handleKeyPress}
-              />
-
-              <label
-                htmlFor='password'
-                className='block mt-2 text-xs font-medium text-gray-600'
-              ></label>
-
-              {/* Input field for password with show/hide functionality */}
-              <div className='relative flex items-center justify-end'>
+              <label className='block text-sm font-medium text-gray-600'>
                 <input
-                  type={showPassword ? "text" : "password"}
-                  id='password'
-                  className='mt-1 p-3 border-2 rounded-md w-full text-[1.05rem] focus:ring-blue-500 focus:ring-1 focus:outline-0 placeholder:text-md '
-                  placeholder='Password'
-                  onChange={(e) => setPassword(e.target.value)}
+                  type='text'
+                  id='email'
+                  className='p-3 border-2 rounded-md w-full focus:ring-blue-500 focus:ring-1 focus:outline-0 text-[1.05rem]'
+                  placeholder='Email or phone number'
+                  ref={emailRef}
+                  autoComplete='on'
                   onKeyDown={handleKeyPress}
                 />
+              </label>
 
-                {/* Toggle password visibility button */}
-                {password && (
-                  <div
-                    className='absolute cursor-pointer mt-1 mr-4'
-                    onClick={togglePasswordVisibility}
-                  >
-                    <img
-                      src={showPassword ? eyeIcon : hideIcon}
-                      alt={showPassword ? "Hide Password" : "Show Password"}
-                      className='h-[1.7rem] max-w-full p-[0.35rem] rounded-full hover:bg-gray-100 active:bg-gray-300'
-                    />
-                  </div>
-                )}
-              </div>
+              {/* Input field for password with show/hide functionality */}
+              <label className='block mt-2 text-xs font-medium text-gray-600'>
+                <div className='relative flex items-center justify-end'>
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    id='password'
+                    className='mt-1 p-3 border-2 rounded-md w-full text-[1.05rem] focus:ring-blue-500 focus:ring-1 focus:outline-0 placeholder:text-md '
+                    placeholder='Password'
+                    onChange={(e) => setPassword(e.target.value)}
+                    onKeyDown={handleKeyPress}
+                  />
+
+                  {/* Toggle password visibility button */}
+                  {password && (
+                    <div
+                      className='absolute cursor-pointer mt-1 mr-4'
+                      onClick={togglePasswordVisibility}
+                    >
+                      <img
+                        src={showPassword ? eyeIcon : hideIcon}
+                        alt={showPassword ? "Hide Password" : "Show Password"}
+                        className='h-[1.7rem] max-w-full p-[0.35rem] rounded-full hover:bg-gray-100 active:bg-gray-300'
+                      />
+                    </div>
+                  )}
+                </div>
+              </label>
 
               {/* Submit button for the login form */}
               <Link
