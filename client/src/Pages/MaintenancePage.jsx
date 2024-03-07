@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function MaintenancePage() {
+export const MaintenancePage = () => {
   const navigate = useNavigate();
 
   const goBack = () => {
@@ -124,3 +124,5 @@ export default function MaintenancePage() {
     </>
   );
 }
+
+export default MaintenancePage;
