@@ -13,12 +13,11 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        <Route path='/' element={<LoginPage />} />
-        <Route path='/loginfailed' element={<LoginFailedPage />} />
-        <Route path='/maintenance' element={<MaintenancePage />} />
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/loginfailed" element={<LoginFailedPage />} />
+        <Route path="/maintenance" element={<MaintenancePage />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </Router>
   );
 }
-

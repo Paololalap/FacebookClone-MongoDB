@@ -5,7 +5,7 @@ import eyeIcon from "../assets/show.png";
 import hideIcon from "../assets/hide.png";
 import { Link } from "react-router-dom";
 
-export default function LoginFailedPage() {
+export const LoginFailedPage = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [isLoading, setIsLoading] = useState(false);
@@ -288,4 +288,5 @@ export default function LoginFailedPage() {
       </div>
     </>
   );
-}
+};
+
