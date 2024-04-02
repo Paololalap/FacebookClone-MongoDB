@@ -11,7 +11,7 @@ app.use(express.json());
 
 // Connect to MongoDB database
 mongoose.connect(
-  "mongodb+srv://paolomorales1502:mNaeYCglRQ2jsi95@cluster0.tznjlr3.mongodb.net/facebook"
+  
 );
 
 // Endpoint to handle user creation
