@@ -11,7 +11,7 @@ app.use(express.json());
 
 // Connect to MongoDB database
 mongoose.connect(
-  
+  //Your mongouri
 );
 
 // Endpoint to handle user creation
